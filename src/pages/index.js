@@ -35,15 +35,6 @@ const MarketWebsite = () => {
     { id: 'sports', name: 'Sport', icon: '⚽' }
   ];
 
-  const handleLogin = (e) => {
-    e.preventDefault();
-    if (username === 'user1' && password === 'passwd123!') {
-      setIsLoggedIn(true);
-      setError('');
-    } else {
-      setError('Login yoki parol xato!');
-    }
-  };
 
   const addToCart = (product) => {
     setCart([...cart, product]);
@@ -63,83 +54,6 @@ const MarketWebsite = () => {
     return matchesSearch && matchesCategory;
   });
 
-  if (!isLoggedIn) {
-    return (
-      <div className="min-h-screen bg-gradient-to-br from-purple-600 via-pink-600 to-red-600 flex items-center justify-center p-4">
-        <div className="absolute inset-0 bg-black opacity-20"></div>
-        <div className="absolute inset-0 overflow-hidden">
-          {[...Array(20)].map((_, i) => (
-            <div
-              key={i}
-              className="absolute bg-white rounded-full opacity-10 animate-pulse"
-              style={{
-                width: Math.random() * 100 + 50 + 'px',
-                height: Math.random() * 100 + 50 + 'px',
-                left: Math.random() * 100 + '%',
-                top: Math.random() * 100 + '%',
-                animationDelay: Math.random() * 2 + 's',
-                animationDuration: Math.random() * 3 + 2 + 's'
-              }}
-            />
-          ))}
-        </div>
-        
-        <div className="relative bg-white rounded-3xl shadow-2xl p-8 md:p-12 w-full max-w-md transform hover:scale-105 transition-all duration-300">
-          <div className="text-center mb-8">
-            <div className="text-6xl mb-4 animate-bounce">🛒</div>
-            <h1 className="text-4xl font-bold bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent mb-2">
-              Market.uz
-            </h1>
-            <p className="text-gray-600">Xush kelibsiz!</p>
-          </div>
-
-          <div className="space-y-6">
-            <div className="relative">
-              <User className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" size={20} />
-              <input
-                type="text"
-                placeholder="Login"
-                value={username}
-                onChange={(e) => setUsername(e.target.value)}
-                onKeyPress={(e) => e.key === 'Enter' && handleLogin(e)}
-                className="w-full pl-12 pr-4 py-3 border-2 border-gray-200 rounded-xl focus:border-purple-500 focus:outline-none transition-all duration-300"
-              />
-            </div>
-
-            <div className="relative">
-              <div className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400">🔒</div>
-              <input
-                type="password"
-                placeholder="Parol"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                onKeyPress={(e) => e.key === 'Enter' && handleLogin(e)}
-                className="w-full pl-12 pr-4 py-3 border-2 border-gray-200 rounded-xl focus:border-purple-500 focus:outline-none transition-all duration-300"
-              />
-            </div>
-
-            {error && (
-              <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded-xl animate-shake">
-                {error}
-              </div>
-            )}
-
-            <button
-              onClick={handleLogin}
-              className="w-full bg-gradient-to-r from-purple-600 to-pink-600 text-white py-3 rounded-xl font-semibold hover:shadow-lg transform hover:-translate-y-1 transition-all duration-300"
-            >
-              Kirish
-            </button>
-
-            <div className="text-center text-sm text-gray-500 mt-4">
-              <p>Test uchun:</p>
-              <p className="font-mono bg-gray-100 p-2 rounded mt-2">user1 / passwd123!</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    );
-  }
 
   return (
     <div className="min-h-screen bg-gray-50">
